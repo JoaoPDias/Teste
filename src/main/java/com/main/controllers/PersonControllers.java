@@ -51,6 +51,27 @@ public class PersonControllers {
         return new ModelAndView("redirect:/person/");
     }
 
+    @GetMapping(value = "update/{id}")
+    public ModelAndView update(@PathVariable("id") Integer id) {
+        ModelAndView mv = new ModelAndView("/person/update");
+        mv.addObject("person", personService.findOne(id));
+
+        return mv;
+    }
+
+    @PostMapping("/update/{id}")
+    public ModelAndView save(@PathVariable("id") Integer id, @Valid Person person, BindingResult result) {
+        if (result.hasErrors()) {
+            ModelAndView mv = new ModelAndView("/person/update");
+            mv.addObject("person", person);
+
+            return mv;
+        }
+
+        personService.save(person);
+        return index();
+    }
+
     @GetMapping("/delete/{id}")
     public ModelAndView delete(@PathVariable("id") Integer id) {
         personService.delete(id);
