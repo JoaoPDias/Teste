@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Alterar Área de Atuação</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body class="container-fluid">
+<div class="col-md-12 col-sm-12">
+    <div class="clearfix">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <strong>Alterar Área de Atuação</strong>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal col-md-12 col-sm-12" th:object="${activityarea}"
+                      th:action="@{/activityarea/update/{id}(id=${activityarea.id})}" th:method="POST">
+                    <div class="form-group">
+                        <label class="control-label">Nome</label>
+                        <input class="form-control" th:field="${activityarea.nome}" type="text"
+                               th:value="${activityarea.nome}"/>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success">Save</button>
+                        <a class="btn btn-default" th:href="@{/person/index}">Voltar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
